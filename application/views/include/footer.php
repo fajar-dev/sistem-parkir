@@ -1,6 +1,6 @@
 <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2018 <div class="bullet"></div> Sistem Informasi Parkir</a>
+          Copyright &copy; 2022 <div class="bullet"></div> Sistem Informasi Parkir</a>
         </div>
         <div class="footer-right"></div>
       </footer>
@@ -15,9 +15,9 @@
   <script src="<?php  echo base_url() ?>dist/modules/nicescroll/jquery.nicescroll.min.js"></script>
   <script src="<?php  echo base_url() ?>dist/modules/scroll-up-bar/dist/scroll-up-bar.min.js"></script>
   <script src="<?php  echo base_url() ?>dist/js/sa-functions.js"></script>
-  <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap4.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="<?php  echo base_url() ?>dist/modules/datatables/DataTables-1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="<?php  echo base_url() ?>dist/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="<?php  echo base_url() ?>dist/modules/sweetalert.min.js"></script>
   
   <script src="<?php  echo base_url() ?>dist/modules/chart.min.js"></script>
   <script src="<?php  echo base_url() ?>dist/modules/summernote/summernote-lite.js"></script>

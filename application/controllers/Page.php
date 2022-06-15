@@ -11,8 +11,7 @@ class Page extends CI_Controller {
 		}
 	}
 	
-	public function index()
-	{
+	public function index(){
     $data['title'] = 'Dashboard';
 		$data['in'] =  $this->Model_page->stat0('tbl_parkir');
 		$data['out'] =  $this->Model_page->stat1('tbl_parkir');
@@ -23,6 +22,9 @@ class Page extends CI_Controller {
 	}
 
   public function cekin(){
+		if($this->session->userdata('level')!= 2){
+			redirect(base_url('page'));
+		}
 		$parkir = $_POST['parkir'];
 		$petugas = $_POST['petugas'];
 		$jenis = $_POST['jenis'];
@@ -42,13 +44,17 @@ class Page extends CI_Controller {
 		redirect(base_url('page/print'));
 	}
 
-	public function print()
-	{
+	public function print(){
+		if($this->session->userdata('level')!= 2){
+			redirect(base_url('page'));
+		}
 		$this->load->view('print');
 	}
 
-	public function cek()
-	{
+	public function cek(){
+		if($this->session->userdata('level')!= 2){
+			redirect(base_url('page'));
+		}
 		$id = $_POST['cari'];
 		$data= $this->Model_page->cek($id)->result();
 		$this->session->set_flashdata('search', $id);
@@ -106,11 +112,14 @@ class Page extends CI_Controller {
 
 	}
 
-	public function checkout($id)
-	{
+	public function checkout($id){
+		if($this->session->userdata('level')!= 2){
+			redirect(base_url('page'));
+		}
 		$where = array('id_parkir' => $id);
 			$data = array(
-			'status' => 1
+			'status' => 1,
+			'waktu_keluar' => date("Y-m-d H:i:s")
 		);
 		$this->db->update('tbl_parkir',$data,$where);
 		$this->session->set_flashdata('hasil',
@@ -134,6 +143,9 @@ class Page extends CI_Controller {
     $this->load->view('include/footer');
 	}
   function hapus_jenis($id){
+		if($this->session->userdata('level')!= 1){
+			redirect(base_url('page'));
+		}
 		$where = array('id'=>$id);
 		$this->Model_page->hapus('tbl_kendaraan',$where);
 		$this->session->set_flashdata('msg',
@@ -148,6 +160,9 @@ class Page extends CI_Controller {
 	}
 
 	public function tambah_jenis(){
+		if($this->session->userdata('level')!= 1){
+			redirect(base_url('page'));
+		}
 		$jenis = $_POST['jenis'];
 		$tarif = $_POST['tarif'];
 		$data = array(
@@ -155,6 +170,29 @@ class Page extends CI_Controller {
 			'tarif'=>$tarif,
 			);
 		$this->Model_page->tambah('tbl_kendaraan',$data);
+		$this->session->set_flashdata('msg',
+		'<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Berhasil!</strong> Menambahkan data jenis kendaraan!!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>'
+		);
+		redirect(base_url('page/jenis'));
+	}
+
+	public function edit_jenis(){
+		if($this->session->userdata('level')!= 1){
+			redirect(base_url('page'));
+		}
+		$where = array('id' => $_POST['id']);
+		$jenis = $_POST['jenis'];
+		$tarif = $_POST['tarif'];
+		$data = array(
+		'jenis'=>$jenis,
+		'tarif'=>$tarif,
+		);
+		$this->db->update('tbl_kendaraan',$data,$where);
 		$this->session->set_flashdata('msg',
 		'<div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>Berhasil!</strong> Menambahkan data jenis kendaraan!!
@@ -184,8 +222,10 @@ class Page extends CI_Controller {
     $this->load->view('include/footer');
 	}
 
-  public function petugas()
-	{
+  public function petugas(){
+		if($this->session->userdata('level')!= "1"){
+			redirect(base_url('page'));
+		}
     $data['title'] = 'Petugas';
     $data['hasil']= $this->Model_page->tampil('tbl_petugas')->result();
     $this->load->view('include/header', $data);
@@ -194,8 +234,42 @@ class Page extends CI_Controller {
     $this->load->view('include/footer');
 	}
 
+	public function tambah_petugas(){
+		if($this->session->userdata('level')!= 1){
+			redirect(base_url('page'));
+		}
+		$nama = $_POST['nama'];
+		$jk = $_POST['jk'];
+		$hp = $_POST['hp'];
+		$email = $_POST['email'];
+		$username = $_POST['user'];
+		$password = $_POST['pass'];
+		$level = $_POST['level'];
+		$data = array(
+			'nama'=>$nama,
+			'jk'=>$jk,
+			'hp'=>$hp,
+			'email'=>$email,
+			'username'=>$username,
+			'password'=>md5($password),
+			'level'=>$level,
+			);
+		$this->Model_page->tambah('tbl_petugas',$data);
+		$this->session->set_flashdata('msg',
+		'<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Berhasil!</strong> Menambahkan data petugas!!
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>'
+		);
+		redirect(base_url('page/petugas'));
+	}
 
   function hapus_petugas($id){
+		if($this->session->userdata('level')!= 1){
+			redirect(base_url('page'));
+		}
 		$where = array('id_petugas'=>$id);
 		$this->Model_page->hapus('tbl_petugas',$where);
 		$this->session->set_flashdata('msg',

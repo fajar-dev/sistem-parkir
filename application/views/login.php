@@ -61,7 +61,7 @@
               </div>
             </div>
             <div class="simple-footer">
-              Copyright &copy; Stisla 2022
+              Copyright &copy; SIP 2022
             </div>
           </div>
         </div>

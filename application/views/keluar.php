@@ -38,7 +38,7 @@
                               <td><?php echo htmlentities($data->pemilik, ENT_QUOTES, 'UTF-8');?></td>
                               <td><?php echo htmlentities($data->waktu_masuk, ENT_QUOTES, 'UTF-8');?></td>
                               <td><?php echo htmlentities($data->waktu_keluar, ENT_QUOTES, 'UTF-8');?></td>
-                              <td><?php echo htmlentities($data->tarif, ENT_QUOTES, 'UTF-8');?></td>
+                              <td>Rp. <?php echo number_format($data->tarif);?></td>
                               <td><?php echo htmlentities($data->nama, ENT_QUOTES, 'UTF-8');?></td>
                           </tr>
                           <?php

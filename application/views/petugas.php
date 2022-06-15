@@ -8,6 +8,9 @@
             <?php echo $this->session->flashdata('msg') ?>
               <div class="card">
                 <div class="card-header">
+                  <div class="float-right">
+                      <button data-toggle="modal" data-target="#petugas"  class="btn btn-primary active"><i class="ion ion-plus"></i> Tambah Petugas</button>
+                  </div>
                   <h4>Data <?php echo $title ?></h4>
                 </div>
                 <div class="card-body">
@@ -21,6 +24,7 @@
                               <th>Email</th>
                               <th>NO HP</th>
                               <th>Level</th>
+                              <th>Aksi</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -33,7 +37,10 @@
                               <td><?php echo htmlentities($data->jk, ENT_QUOTES, 'UTF-8');?></td>
                               <td><?php echo htmlentities($data->email, ENT_QUOTES, 'UTF-8');?></td>
                               <td><?php echo htmlentities($data->hp, ENT_QUOTES, 'UTF-8');?></td>
-                              <td><?php echo htmlentities($data->level, ENT_QUOTES, 'UTF-8');?></td>
+                              <td><?php if($data->level == 1){echo'Manager';} elseif($data->level == 2){echo'petugas';}?></td>
+                              <td>
+                                <a href="<?php echo site_url()?>page/hapus_petugas/<?php echo $data->id_petugas ?>" class="btn btn-danger btn-del"><i class="ion ion-ios-trash"></i></a>
+                              </td>
                             </tr>
                           <?php
                             }
