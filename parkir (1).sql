@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 05 Jun 2022 pada 10.06
+-- Waktu pembuatan: 20 Jun 2022 pada 10.56
 -- Versi server: 5.7.33
 -- Versi PHP: 7.4.19
 
@@ -38,7 +38,7 @@ CREATE TABLE `tbl_kendaraan` (
 --
 
 INSERT INTO `tbl_kendaraan` (`id`, `jenis`, `tarif`) VALUES
-(1, 'Motor', 2000);
+(2, 'mobil', 5000);
 
 -- --------------------------------------------------------
 
@@ -62,8 +62,9 @@ CREATE TABLE `tbl_parkir` (
 --
 
 INSERT INTO `tbl_parkir` (`id_parkir`, `id_petugas`, `id_kendaraan`, `pemilik`, `plat`, `waktu_masuk`, `waktu_keluar`, `status`) VALUES
-('p-3633', 1, 1, 'Zainul', 'BB 123 JAN', '2022-05-05 17:04:00', NULL, 0),
-('p-9344', 1, 1, 'Fajar', 'BK 1020 AIR', '2022-06-05 17:03:00', NULL, 1);
+('p-3633', 56001, 2, 'Zainul', 'BB 123 JAN', '2022-05-05 17:04:00', '2022-06-15 00:00:00', 1),
+('p-4013', 56001, 2, 'Fajar', 'aaaaaaaa', '2022-06-05 22:39:00', '2022-06-15 14:58:57', 1),
+('p-9344', 56001, 2, 'Fajar', 'BK 1020 AIR', '2022-06-05 17:03:00', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `tbl_petugas` (
 --
 
 INSERT INTO `tbl_petugas` (`id_petugas`, `nama`, `jk`, `hp`, `email`, `username`, `password`, `level`) VALUES
-(1, 'aaa', 'Laki-Laki', '0895611024559', 'faaa', 'master', 'eb0a191797624dd3a48fa681d3061212', 'petugas');
+(1, 'Fajar Rivaldi Chan', 'Laki-Laki', '0895611024559', 'fajarrivaldi2015@gmail.com', 'manager', '1d0258c2440a8d19e716292b231e3190', '1'),
+(56001, 'zainul Anwar', 'Laki-Laki', '081200234572', 'zainul02@gmail.com', 'petugas', 'afb91ef692fd08c445e8cb1bab2ccf9c', '2');
 
 --
 -- Indexes for dumped tables
@@ -125,7 +127,7 @@ ALTER TABLE `tbl_kendaraan`
 -- AUTO_INCREMENT untuk tabel `tbl_petugas`
 --
 ALTER TABLE `tbl_petugas`
-  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_petugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56002;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
